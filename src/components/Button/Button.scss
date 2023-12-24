@@ -1,0 +1,17 @@
+@import '../../utils/variables.scss';
+
+.button {
+  width: 100px;
+  height: 34px;
+  border-radius: 80px;
+  border: none;
+  background-color: $yellowColor;
+  font-family: 'Nunito', sans-serif;
+
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $hoveredYellow;
+    cursor: pointer;
+  }
+}

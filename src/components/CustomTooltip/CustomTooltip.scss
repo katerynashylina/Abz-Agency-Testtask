@@ -1,0 +1,19 @@
+.tooltip {
+  position: relative;
+
+  &__content {
+    box-sizing: border-box;
+    padding-inline: 10px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    border-radius: 4px;
+    width: 270px;
+    color: #fff;
+    word-wrap: break-word;
+    background-color: rgba(0, 0, 0, 0.87);
+    z-index: 1;
+  }
+}

@@ -1,0 +1,34 @@
+@import '../../utils/variables.scss';
+
+.user-card {
+  &__container {
+    box-sizing: border-box;
+    width: $cardWidth;
+    height: $cardHeight;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  &__photo {
+    border-radius: 50%;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__name {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

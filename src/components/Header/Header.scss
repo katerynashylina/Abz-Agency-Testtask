@@ -1,0 +1,57 @@
+.header {
+  margin-bottom: 150px;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  &__logo {
+    height: 26px;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    color: #fff;
+    text-align: center;
+    height: 650px;
+    position: relative;
+    background-image: url(../../photos/pexels-alexandr-podvalny-1227513.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: -17px -60px;
+    padding: 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%);
+      opacity: 0.8;
+      z-index: 0;
+    }
+  }
+
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+    width: 380px;
+    z-index: 1;
+  }
+}

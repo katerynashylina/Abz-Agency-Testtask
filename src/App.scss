@@ -1,0 +1,21 @@
+@import './utils/variables.scss';
+
+.page {
+  font-family: 'Nunito', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  
+  &__container {
+    padding: 17px 60px;
+    background-color: $backgroundColor;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 140px;
+  }
+}
