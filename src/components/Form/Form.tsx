@@ -35,11 +35,22 @@ export const Form: React.FC<Props> = ({
   });
 
   const [formChanges, setFormChanges] = useState({});
-  // const [image, setImage] = useState('');
+  const [selectedPosition, setSelectedPosition] = useState<number | null>(null);
+
+  const handlePositionChange = (positionId: number) => {
+    setSelectedPosition(positionId);
+    const selectedPosition = positions.find(
+      position => position.id === positionId
+    );
+  
+    if (selectedPosition) {
+      setNewUser({ ...newUser, position: selectedPosition });
+    }
+  };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormChanges({ ...formChanges, [name]: value });
+    setNewUser(prev => ({ ...prev, [name]: value }))
   };
 
   const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,7 +58,8 @@ export const Form: React.FC<Props> = ({
     setNewUser({ ...newUser, photo: file });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: {preventDefault: () => void}) => {
+    e.preventDefault();
     setNewUser({ ...newUser, ...formChanges });
 
     const newErrors = {
@@ -78,14 +90,11 @@ export const Form: React.FC<Props> = ({
     if (isFormValid) {
       try {
         const createdUser = await createUser({
-          id: Math.max(...users.map(user => user.id)) + 1,
-          name: newUser.name.trim(),
-          email: newUser.email.trim(),
-          phone: newUser.phone.trim(),
-          photo: newUser.photo,
-          position_id: positions[0].id,
-          token: token,
+          success: true,
+          user_id: Math.max(...users.map(user => user.id)) + 1,
+          message: "New user successfully registered"
         });
+  
   
         setUsers((prevUsers) => [...prevUsers, createdUser]);
       } catch (error) {
@@ -141,21 +150,34 @@ export const Form: React.FC<Props> = ({
             <RadioInput
               key={position.id}
               position={position}
+              handlePositionChange={handlePositionChange}
             />
           ))}
         </div>
 
-        <input
-          type="file"
-          name="upload"
-          placeholder="Upload your photo"
-          className="form__input"
-          onChange={handleFileInputChange}
-        />
+        <div className="file">
+          <label className='file__upload' htmlFor="upload-photo">
+            Upload
 
-        <Button
-          text='Sign up'
-        />
+          </label>
+            <label htmlFor="upload-photo" className='file__photo'>
+              {newUser.photo ? newUser.photo.name : 'Upload your photo'}
+            </label>
+            <input
+              type="file"
+              name="upload"
+              placeholder="Upload your photo"
+              className="form__input"
+              onChange={handleFileInputChange}
+              id="upload-photo"
+            />
+        </div>
+
+        <div className="form__button">
+          <Button
+            text='Sign up'
+          />
+        </div>
       </form>
     </section>
   );
